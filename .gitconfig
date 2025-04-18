@@ -1,0 +1,51 @@
+[user]
+	name = xxx
+	email = xxx.com
+	useConfigOnly = true
+[core]
+	hooksPath = /Users/coderfe/.git-hooks
+	quotepath = false
+	longpaths = true
+	excludesfile = ~/.gitignore_global
+	attributesfile = ~/.attributes_global
+	ignorecase = false
+	untrackedcache = true
+[init]
+	defaultBranch = master
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[lfs]
+	concurrenttransfers = 32
+	fetchrecentrefsdays = 0
+	pruneoffsetdays = 0
+	dialtimeout = 3
+	tlstimeout = 3
+[lfs "transfer"]
+	maxretries = 1
+	maxretrydelay = 2
+[merge "lfs-text"]
+	driver = git lfs merge-driver --ancestor %O --current %A --other %B --marker-size %L --output %A --program 'git merge-file --stdout --marker-size=%%L %%A %%O %%B >%%D'
+[rebase]
+	backend = merge
+[protocol]
+	version = 1
+[pull]
+	rebase = true
+[safe]
+	directory = *
+[commit]
+	template = 
+[alias]
+	co = checkout
+	br = branch
+	ci = commit
+	st = status
+	pl = pull
+	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %C(bold blue)%s%Creset %Cgreen(%cr) <%an>%Creset' --abbrev-commit --date=relative
+	lga = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %C(bold blue)%s%Creset %Cgreen(%cr) <%an>%Creset' --abbrev-commit --date=relative --author [xxx]
+	last = log -1
+	pl = pull
+	cob = checkout -b
